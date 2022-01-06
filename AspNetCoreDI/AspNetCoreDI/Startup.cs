@@ -34,7 +34,7 @@ namespace AspNetCoreDI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspNetCoreDI", Version = "v1" });
             });
 
-            services.AddSingleton<Dependency>();
+            services.AddScoped<Dependency>();
 
         }
 
