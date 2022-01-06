@@ -45,8 +45,16 @@ namespace AspNetCoreDI.Controllers
 
     public class InnerDependency
     {
+        private readonly ILogger<InnerDependency> logger;
+
+        public InnerDependency(ILogger<InnerDependency> logger)
+        {
+            this.logger = logger;
+        }
+
         public string GetOutput()
         {
+            logger.LogInformation("Get Output method is called");
             return this.GetHashCode().ToString();
         }
     }

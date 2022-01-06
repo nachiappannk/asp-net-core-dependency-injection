@@ -34,12 +34,14 @@ namespace AspNetCoreDI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspNetCoreDI", Version = "v1" });
             });
 
+            services.AddSingleton<InnerDependency>();
             services.AddSingleton<Dependency>(GetDependency);
         }
 
         private Dependency GetDependency(IServiceProvider sp)
         {
-            return new Dependency(new InnerDependency());
+            var innerDependency = sp.GetService<InnerDependency>();
+            return new Dependency(innerDependency);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
