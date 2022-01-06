@@ -35,6 +35,7 @@ namespace AspNetCoreDI
             });
 
             services.AddScoped<Dependency>();
+            services.AddScoped<InnerDependency>();
 
         }
 

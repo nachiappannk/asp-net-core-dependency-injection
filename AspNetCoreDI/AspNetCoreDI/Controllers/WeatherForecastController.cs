@@ -29,6 +29,22 @@ namespace AspNetCoreDI.Controllers
 
     public class Dependency
     {
+        private readonly InnerDependency innerDependency;
+
+        public Dependency(InnerDependency innerDependency)
+        {
+            this.innerDependency = innerDependency;
+        }
+
+        public string GetOutput()
+        {
+            return this.GetHashCode().ToString() + " " + this.innerDependency.GetOutput();
+        }
+    }
+
+
+    public class InnerDependency
+    {
         public string GetOutput()
         {
             return this.GetHashCode().ToString();
