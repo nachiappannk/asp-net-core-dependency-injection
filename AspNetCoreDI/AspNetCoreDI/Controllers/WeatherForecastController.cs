@@ -11,10 +11,27 @@ namespace AspNetCoreDI.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        private readonly Dependency dependency;
+
+        public WeatherForecastController(Dependency dependency)
+        {
+            this.dependency = dependency;
+        }
+
+
         [HttpGet]
         public string Get()
         {
-            return "hello";
+            return this.dependency.GetOutput();
+        }
+    }
+
+
+    public class Dependency
+    {
+        public string GetOutput()
+        {
+            return this.GetHashCode().ToString();
         }
     }
 }
